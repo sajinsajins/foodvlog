@@ -1,0 +1,154 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <!-- basic -->
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <!-- mobile metas -->
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+      <!-- site metas -->
+      <!-- bootstrap css -->
+      <link rel="stylesheet" type="text/css" href="{% static 'hm/css/bootstrap.min.css' %}">
+      <!-- style css -->
+      <link rel="stylesheet" type="text/css" href="{% static 'hm/css/style.css' %}">
+      <!-- Responsive-->
+      <link rel="stylesheet" href="css/responsive.css">
+      <!-- fevicon -->
+      <link rel="icon" href="{% static 'hm/images/fevicon.png' %}" type="image/gif" />
+      <!-- Scrollbar Custom CSS -->
+      <link rel="stylesheet" href="Fcss/jquery.mCustomScrollbar.min.css">
+      <!-- Tweaks for older IEs-->
+      <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+      <!-- fonts -->
+      <link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
+      <!-- font awesome -->
+      <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+      <!--  -->
+      <!-- owl stylesheets -->
+      <link href="https://fonts.googleapis.com/css?family=Great+Vibes|Poppins:400,700&display=swap&subset=latin-ext" rel="stylesheet">
+      <link rel="stylesheet" href="css/owl.carousel.min.css">
+      <link rel="stylesoeet" href="css/owl.theme.default.min.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
+      <style>
+         .dropbtn {
+           background-color: #4CAF50;
+           color: white;
+           padding: 16px;
+           font-size: 16px;
+           border: none;
+           cursor: pointer;
+         }
+         
+         .dropdown {
+           position: relative;
+           display: inline-block;
+           padding: 56;
+         }
+         
+         .dropdown-content {
+           display: none;
+           position: absolute;
+           background-color: #f9f9f9;
+           min-width: 160px;
+           box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+           z-index: 1;
+         }
+         
+         .dropdown-content a {
+           color: black;
+           padding: 12px 16px;
+           text-decoration: none;
+           display: block;
+         }
+         
+         .dropdown-content a:hover {background-color: #f1f1f1}
+         
+         .dropdown:hover .dropdown-content {
+           display: block;
+         }
+         
+         .dropdown:hover .dropbtn {
+           background-color: #3e8e41;
+         }
+         </style>
+         
+         <div class="dropdown">
+           <button class="dropbtn">FILTER</button>
+           <div class="dropdown-content">
+           <a href="/">All</a>
+           {% for i in ct %}
+           <a href={{i.get.url}}>{{i.name}}</a>
+           {% endfor %}
+           </div>
+         </div>
+   </head>
+   </head>
+<body>
+      {% for i in pg.object_list %}
+      <li><a href={{i.get_url}} img src={{i.img.url}} style="height:250;"></li></a>
+       <h6 class="heading">{{i.name}}</h6>
+        <p>{{i.desc}}</p>
+         <br>
+          <p\>{{i.price}} Rs</p>
+           <br>
+           <p>stock left: {{i.stock}}</p>
+{% endfor %}
+   <body>
+      <!-- banner bg main start -->
+      <div class="banner_bg_main">
+         <!-- header top section start -->
+         <!-- header top section start -->
+         <!-- logo section start -->
+         <div class="logo_section">
+            <div class="container">
+               <div class="row">
+                  <div class="col-sm-12">
+                     <div class="logo"><a href="/"><h1>AVODHA SHOPPING</h1><img src="{% static 'hm/images/logo.png' %}"></a></div>
+                     <ul class="clear">
+                        <li><a class="active" href="/">home</a> </li>
+                        <li><a class="active" href="#">cart</a> </li>
+                        <li><a class="active" href="#">logout</a> </li>
+                        <li><a class="active" href="#">login</a> </li>
+                        <li><a class="active" href="#">register</a> </li>
+                        </ul>
+   
+                  </div>
+               </div>
+            </div>
+         </div>
+         <!-- Another variation with a button -->
+         <div class="input-group"action="{% url 'search' %}" method="get">
+          <input type="text" class="form-control" placeholder="Enter Item Name To Search" name="q">
+            <div class="input-group-append">
+               <button class="btn btn-secondary" type="submit" style="background-color: #0a0908e6; border-color:#131110 ">
+               <i class="fa fa-search"></i>
+                  </button>
+                     </div>
+                  </div>
+               </div>
+         <!-- header section end -->
+         <!-- banner section start -->
+         <div class="banner_section layout_padding">
+            <div class="container">
+               <div id="my_slider" class="carousel slide" data-ride="carousel">
+                  <div class="carousel-inner">
+                     <div class="carousel-item active">
+                        <div class="row">
+                           <div class="col-sm-12">
+                              <h1 class="banner_taital"> FOOD<br>QUALITY FOOD ITEMS</h1>
+                           </div>
+                           {% for p in pg.paginator.page_range %}
+                           <a href="?page={{p}}" class="btn btn-light btn-sm {% if pg.number == p %} active {% endif %}">{{p}}</a>
+                           
+                           {% endfor %}
+                        </div>
+                     </div>
+   </body>
+</html>
+
+{% endblock %}
